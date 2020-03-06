@@ -1,3 +1,5 @@
+/* eslint-disable import/no-named-as-default */
+/* eslint-disable import/no-named-as-default-member */
 import Bowman from '../characters/Bowman';
 import Daemon from '../characters/Daemon';
 import Magician from '../characters/Magician';
@@ -56,9 +58,10 @@ describe('Тестим дальнобойных персонажей', () => {
 
         expect(result).toEqual(expected);
         expect(demon.setAttack(2)).toBe(90);
-        expect(demon.setStoned(2)).toBe(85);
+        demon.setStoned();
+        expect(demon.setAttack(2)).toBe(85);
         expect(() => {
-            demon.setStoned(-1);
+            demon.setAttack(-2);
         }).toThrow();
     });
 
@@ -71,9 +74,10 @@ describe('Тестим дальнобойных персонажей', () => {
 
         expect(result).toEqual(expected);
         expect(mag.setAttack(2)).toBe(90);
-        expect(mag.setStoned(2)).toBe(85);
+        mag.setStoned();
+        expect(mag.setAttack(2)).toBe(85);
         expect(() => {
-            mag.setStoned(-1);
+            mag.setAttack(-2);
         }).toThrow();
     });
 });

@@ -1,25 +1,29 @@
 import Character from './Character';
 
 export default class RangeCharacter extends Character {
+    stoned = false;
+
     setAttack(rangeToTarget) {
-        if (rangeToTarget > 0) {
-            const attack = this.attack - (rangeToTarget - 1) * (this.attack / 10);
-            return attack;
+        if (rangeToTarget <= 0) {
+            throw new Error('Attack fail');   
         }
-        throw new Error('Attack fail');
+        let attack = this.attack - (rangeToTarget - 1) * (this.attack / 10);
+        if (this.stoned) {
+            attack -= Math.log2(rangeToTarget) * 5;
+        }
+        return attack;
+        
     }
 
     // getAttack() {
     //     return this.attack;
     // }
 
-    setStoned(rangeToTarget) {
-        let attack = this.setAttack(rangeToTarget);
-        attack -= Math.log2(rangeToTarget) * 5;
-        return attack;
+    setStoned() {
+        this.stoned = true;
     }
 
-    // getStoned() {
-
-    // }
+    getStoned() {
+        return this.stoned;
+    }
 }
