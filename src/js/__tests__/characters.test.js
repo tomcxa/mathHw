@@ -57,9 +57,14 @@ describe('Тестим дальнобойных персонажей', () => {
         const expected = ['Демонюга', true, true];
 
         expect(result).toEqual(expected);
-        expect(demon.setAttack(2)).toBe(90);
+        demon.setAttack(2);
+        expect(demon.getAttack()).toBe(90);
         demon.setStoned();
-        expect(demon.setAttack(2)).toBe(85);
+        demon.setAttack(2);
+        expect(demon.getStoned()).toBeTruthy();
+        expect(demon.getAttack()).toBe(85);
+        demon.setStoned();
+        expect(demon.getStoned()).toBeFalsy();
         expect(() => {
             demon.setAttack(-2);
         }).toThrow();
@@ -73,9 +78,14 @@ describe('Тестим дальнобойных персонажей', () => {
         const expected = ['Ватный', true, true];
 
         expect(result).toEqual(expected);
-        expect(mag.setAttack(2)).toBe(90);
+        mag.setAttack(2);
+        expect(mag.getAttack()).toBe(90);
         mag.setStoned();
-        expect(mag.setAttack(2)).toBe(85);
+        mag.setAttack(2);
+        expect(mag.getStoned()).toBeTruthy();
+        expect(mag.getAttack()).toBe(85);
+        mag.setStoned();
+        expect(mag.getStoned()).toBeFalsy();
         expect(() => {
             mag.setAttack(-2);
         }).toThrow();
